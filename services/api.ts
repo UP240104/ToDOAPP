@@ -1,5 +1,5 @@
-const BASE_IP = "192.168.x.x";
-const BASE_URL = `http://${BASE_IP}:3000/todos`;
+const BASE_IP = "10.10.150.189";
+const BASE_URL = `http://${BASE_IP}:3000/todos`; //para que se pueda acceder desde otros dispositivos
 
 //previene respuestas de strings vacios
 const safeJson = async (res: Response) => {
@@ -8,9 +8,7 @@ const safeJson = async (res: Response) => {
 };
 
 export const getTasks = async () => {
-  console.log("Fetching:", BASE_URL);
   const res = await fetch(BASE_URL);
-  console.log("Status:", res.status);
   return safeJson(res);
 };
 

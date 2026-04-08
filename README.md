@@ -74,8 +74,8 @@ La API estará disponible en `http://localhost:3000`.
 Clona este repositorio:
 
 ```bash
-git clone https://github.com/tu-usuario/todo-app.git
-cd todo-app
+git clone https://github.com/UP240104/ToDOAPP
+cd ToDOAPP
 ```
 
 Instala las dependencias:
