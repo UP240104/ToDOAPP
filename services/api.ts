@@ -1,4 +1,4 @@
-const BASE_IP = "192.168.1.64";
+const BASE_IP = "192.168.x.x";
 const BASE_URL = `http://${BASE_IP}:3000/todos`;
 
 //previene respuestas de strings vacios
