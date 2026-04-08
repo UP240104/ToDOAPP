@@ -1,50 +1,145 @@
-# Welcome to your Expo app 👋
+# Todo App — React Native
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Aplicación móvil de lista de tareas desarrollada con React Native, Expo y NativeWind.
 
-## Get started
+## Repositorio de la API
 
-1. Install dependencies
+Este proyecto depende de la API REST disponible en:
 
-   ```bash
-   npm install
-   ```
+-> https://github.com/RamsesMeza/todo-app-api
 
-2. Start the app
+Debes tener la API corriendo en local antes de correr esta app.
 
-   ```bash
-   npx expo start
-   ```
+---
 
-In the output, you'll find options to open the app in a
+## Requisitos previos
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- Node.js 18 o superior
+- npm
+- Expo Go instalado en tu celular (opcional, para probar en dispositivo físico)
+- MySQL corriendo en local
+- La API del proyecto corriendo en local
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+## 1. Configurar y correr la API
 
-When you're ready, run:
+Clona el repositorio de la API:
 
 ```bash
-npm run reset-project
+git clone https://github.com/RamsesMeza/todo-app-api.git
+cd todo-app-api
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Instala las dependencias:
 
-## Learn more
+```bash
+npm install
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+Crea el archivo `.env` a partir del ejemplo:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+cp .env.example .env
+```
 
-## Join the community
+Abre el `.env` y configura tus credenciales de MySQL:
 
-Join our community of developers creating universal apps.
+```env
+PORT=3000
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=tu_password
+DB_NAME=todo_app
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Crea la base de datos ejecutando el script SQL:
+
+```bash
+mysql -u root -p < sql/init.sql
+```
+
+Corre la API:
+
+```bash
+npm run dev
+```
+
+La API estará disponible en `http://localhost:3000`.
+
+---
+
+## 2. Configurar y correr la app
+
+Clona este repositorio:
+
+```bash
+git clone https://github.com/tu-usuario/todo-app.git
+cd todo-app
+```
+
+Instala las dependencias:
+
+```bash
+npm install
+```
+
+Abre el archivo `services/api.ts` y configura la URL del backend:
+
+**Para web:**
+
+```ts
+const BASE_URL = "http://localhost:3000/todos";
+```
+
+**Para móvil (celular físico o emulador):**
+
+Obtén tu IP local con:
+
+```bash
+ipconfig      # Windows
+```
+
+Busca la línea "Dirección IPv4" y úsala:
+
+```ts
+const BASE_IP = "192.168.x.x"; // tu IP local
+const BASE_URL = `http://${BASE_IP}:3000/todos`;
+```
+
+> El celular y la PC deben estar conectados al mismo WiFi.
+
+---
+
+## 3. Correr la app
+
+```bash
+npx expo start --clear
+```
+
+Luego elige una opción:
+
+- Presiona `w` para abrir en el navegador web
+- Presiona `a` para abrir en emulador Android
+- Escanea el QR con la app Expo Go desde tu celular
+
+---
+
+## Funcionalidades
+
+- Listar todas las tareas
+- Crear una nueva tarea
+- Ver el detalle de una tarea
+- Editar una tarea
+- Eliminar una tarea
+- Marcar tarea como completada con checkbox
+
+---
+
+## Tecnologías utilizadas
+
+- React Native
+- Expo
+- Expo Router
+- NativeWind (Tailwind CSS para React Native)
+- TypeScript
